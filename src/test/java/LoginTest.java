@@ -13,12 +13,12 @@ public class LoginTest {
         String path = System.getProperty("user.dir");
         driver.get("file:///" + path + "/login.html");
 
-        driver.findElement(By.id("username")).sendKeys("admin");
+        driver.findElement(By.id("email")).sendKeys("admin@gmail.com");
         driver.findElement(By.id("password")).sendKeys("admin123");
         driver.findElement(By.tagName("button")).click();
 
         String msg = driver.findElement(By.id("message")).getText();
-        Assert.assertEquals(msg, "Login Successful"); // PASS
+        Assert.assertEquals(msg, "Login Successful"); // ✅ PASS
 
         driver.quit();
     }
@@ -30,8 +30,8 @@ public class LoginTest {
         String path = System.getProperty("user.dir");
         driver.get("file:///" + path + "/login.html");
 
-        driver.findElement(By.id("username")).sendKeys("wrong");
-        driver.findElement(By.id("password")).sendKeys("wrong");
+        driver.findElement(By.id("email")).sendKeys("hello.c");
+        driver.findElement(By.id("password")).sendKeys("000000");
         driver.findElement(By.tagName("button")).click();
 
         String msg = driver.findElement(By.id("message")).getText();
