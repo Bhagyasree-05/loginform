@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Login Page</h2>
+
+<input id="username" placeholder="Username"><br><br>
+<input id="password" placeholder="Password"><br><br>
+
+<button onclick="login()">Login</button>
+<p id="message"></p>
+
+<script>
+function login() {
+    var u = document.getElementById("username").value;
+    var p = document.getElementById("password").value;
+
+    // Unintentional bug: OR instead of AND
+    if (u === "admin" || p === "admin123") {
+        document.getElementById("message").innerText = "Login Successful";
+    } else {
+        document.getElementById("message").innerText = "Invalid Credentials";
+    }
+}
+</script>
+
+</body>
+</html>
