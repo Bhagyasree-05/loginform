@@ -1,4 +1,5 @@
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -8,14 +9,16 @@ public class LoginTest {
     @Test
     public void validLoginTest() {
         WebDriver driver = new ChromeDriver();
-        driver.get("file:///C:/selenium-login-demo/login.html");
+
+        String path = System.getProperty("user.dir");
+        driver.get("file:///" + path + "/login.html");
 
         driver.findElement(By.id("username")).sendKeys("admin");
         driver.findElement(By.id("password")).sendKeys("admin123");
         driver.findElement(By.tagName("button")).click();
 
-        String actual = driver.findElement(By.id("message")).getText();
-        Assert.assertEquals(actual, "Login Successful"); // ✅ Pass
+        String msg = driver.findElement(By.id("message")).getText();
+        Assert.assertEquals(msg, "Login Successful"); // PASS
 
         driver.quit();
     }
@@ -23,14 +26,16 @@ public class LoginTest {
     @Test
     public void invalidLoginTest() {
         WebDriver driver = new ChromeDriver();
-        driver.get("file:///C:/selenium-login-demo/login.html");
 
-        driver.findElement(By.id("username")).sendKeys("admin");
-        driver.findElement(By.id("password")).sendKeys("wrongpass");
+        String path = System.getProperty("user.dir");
+        driver.get("file:///" + path + "/login.html");
+
+        driver.findElement(By.id("username")).sendKeys("wrong");
+        driver.findElement(By.id("password")).sendKeys("wrong");
         driver.findElement(By.tagName("button")).click();
 
-        String actual = driver.findElement(By.id("message")).getText();
-        Assert.assertEquals(actual, "Invalid Credentials"); // ❌ Fail (unintentional bug)
+        String msg = driver.findElement(By.id("message")).getText();
+        Assert.assertEquals(msg, "Invalid Credentials"); // ❌ FAIL
 
         driver.quit();
     }
